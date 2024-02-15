@@ -2,4 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Neutral-->
+    <color name="n_700">#2B2B2B</color>
+    <color name="n_600">#383839</color>
+    <color name="n_500">#5E5E5F</color>
+    <color name="n_400">#9E9E9F</color>
+    <color name="n_300">#DFDFDF</color>
+    <color name="n_200">#ECECEC</color>
+    <color name="n_100">#F9F9F9</color>
+    <color name="n_000">#FFFFFF</color>
+
+    <!--Primary-->
+    <color name="p_500">#5224C1</color>
+    <color name="p_400">#9174DA</color>
+    <color name="p_300">#D8CEF2</color>
+    <color name="p_200">#E8E1F7</color>
+    <color name="p_100">#F7F5FC</color>
+
+    <!--Secondary-->
+    <color name="s_500">#F6A522</color>
+    <color name="s_400">#F8C86D</color>
+    <color name="s_300">#FDEDCC</color>
+
+    <!--System-->
+    <color name="warning">#F1404B</color>
+    <color name="success">#3AC569</color>
 </resources>
