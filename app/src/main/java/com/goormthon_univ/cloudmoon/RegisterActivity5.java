@@ -81,6 +81,8 @@ public class RegisterActivity5 extends AppCompatActivity {
         });
 
         Intent intent=new Intent(this, HomeActivity.class);
+        //회원가입 완료 후 모든 회원가입 액티비티들 종료
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity_register5_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
