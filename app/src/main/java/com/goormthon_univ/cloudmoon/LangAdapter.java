@@ -18,6 +18,9 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
     ArrayList<Lang> items=new ArrayList<Lang>();
     private int selectedItemPosition=0;
 
+    //Preferences 관리를 위한 객체
+    PreferencesManager manager;
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
@@ -32,6 +35,8 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
         Lang item=items.get(position);
         viewHolder.setItem(item);
 
+
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +49,7 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
         }else{
             viewHolder.recyclerview_radius2.setVisibility(View.GONE);
         }
+        manager.pref_write_string("lang_b_level",Integer.toString(selectedItemPosition+1));
     }
 
     public int getItemCount(){
@@ -68,6 +74,7 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
         TextView level_text_des;
         ConstraintLayout recyclerview_lang_layout;
         ImageView recyclerview_radius2;
+
 
         public ViewHolder(View itemView){
             super(itemView);

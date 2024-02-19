@@ -12,11 +12,15 @@ import android.view.View;
 import android.widget.Button;
 
 public class SplashActivity2 extends AppCompatActivity {
+    //Preferences 관리를 위한 객체
+    PreferencesManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash2);
+
+        manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
         Button next_button=findViewById(R.id.splash_next_button);
         Intent intent=new Intent(this,LoginActivity.class);
@@ -34,14 +38,10 @@ public class SplashActivity2 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences pref=getSharedPreferences("preferences", Activity.MODE_PRIVATE);
-
-        if(pref!=null&&pref.contains("login")){
-            if(pref.getBoolean("login",true)==true){
-                Intent intent=new Intent(this,HomeActivity.class);
-                startActivityForResult(intent,101);
-                finish();
-            }
+        if(manager.pref_read_boolean("login")){
+            Intent intent=new Intent(this,HomeActivity.class);
+            startActivityForResult(intent,101);
+            finish();
         }
     }
 }

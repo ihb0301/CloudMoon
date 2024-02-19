@@ -2,6 +2,7 @@ package com.goormthon_univ.cloudmoon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class RegisterActivity extends AppCompatActivity {
+    //Preferences 관리를 위한 객체
+    PreferencesManager manager;
 
     //CloudMoon 서버 주소
     final String url_link="http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=20210330";
@@ -35,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
         input_email=findViewById(R.id.activity_register_email);
         input_pw=findViewById(R.id.activity_register_pw);
@@ -55,6 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
                         request(url_link);
                     }
                 }).start();*/
+                manager.pref_write_string("email",input_email.getText().toString());
+                manager.pref_write_string("pw",input_pw.getText().toString());
                 startActivityForResult(intent,101);
             }
         });

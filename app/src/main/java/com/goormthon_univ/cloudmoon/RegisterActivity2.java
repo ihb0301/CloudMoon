@@ -2,6 +2,7 @@ package com.goormthon_univ.cloudmoon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +12,15 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class RegisterActivity2 extends AppCompatActivity {
+    //Preferences 관리를 위한 객체
+    PreferencesManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
+
+        manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
         TextView text_enable_nickname=findViewById(R.id.text_enable_nickname);
         text_enable_nickname.setVisibility(View.GONE);
@@ -39,6 +44,7 @@ public class RegisterActivity2 extends AppCompatActivity {
         activity_register_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                manager.pref_write_string("nickname",activity_register2_nickname.getText().toString());
                 startActivityForResult(intent,101);
             }
         });

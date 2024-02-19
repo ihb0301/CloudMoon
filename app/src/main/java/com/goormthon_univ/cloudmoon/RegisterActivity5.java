@@ -18,17 +18,22 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity5 extends AppCompatActivity {
+    //Preferences 관리를 위한 객체
+    PreferencesManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register5);
 
+        manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
+
         RecyclerView lang_level_recyclerview=findViewById(R.id.lang_level_recyclerview);
 
 
 
         LangAdapter langadapter=new LangAdapter();
+        langadapter.manager=this.manager;
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,false);
@@ -73,8 +78,6 @@ public class RegisterActivity5 extends AppCompatActivity {
         activity_register5_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"test",Toast.LENGTH_LONG);
-
                 activity_register5_next.setEnabled(true);
                 activity_register5_next.setBackgroundColor(getResources().getColor(R.color.p_500));
             }
@@ -86,6 +89,7 @@ public class RegisterActivity5 extends AppCompatActivity {
         activity_register5_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                manager.pref_write_boolean("login",true);
                 startActivityForResult(intent,101);
                 finish();
             }
