@@ -4,16 +4,61 @@
         <!-- Customize your light theme here. -->
 
         <!--   color for the app bar and other primary UI elements -->
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">@color/p_500</item>
         <!--   a darker variant of the primary color, used for
-           the status bar (on Android 5.0+) and contextual app bars -->
-        <item name="colorPrimaryDark">@color/black</item>
+           the status bar (on Android 5.0+) and contextual app bars
+        <item name="colorPrimaryDark">@color/white</item>-->
         <!--   a secondary color for controls like checkboxes and text fields -->
-        <item name="colorAccent">@color/black</item>
+        <item name="colorAccent">@color/p_500</item>
 
         <!-- 배경 색상 -->
         <item name="android:windowBackground">@color/white</item>
+
     </style>
 
-    <style name="Theme.CloudMoon" parent="Base.Theme.CloudMoon" />
+    <style name="Theme.CloudMoon.white" parent="Base.Theme.CloudMoon">
+        <item name="colorPrimaryDark">@color/white</item>
+        <!--상단바 아이콘이 안보이는 오류 해결-->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.CloudMoon.splash" parent="Base.Theme.CloudMoon">
+        <item name="colorPrimaryDark">#6543CD</item>
+        <!--상단바 아이콘이 안보이는 오류 해결-->
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.CloudMoon.home" parent="Base.Theme.CloudMoon">
+        <item name="colorPrimaryDark">@color/p_500</item>
+        <!--상단바 아이콘이 안보이는 오류 해결-->
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Head_lg">
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="Head_md">
+        <item name="android:textSize">26dp</item>
+    </style>
+
+    <style name="Head_sm">
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="Body_lg">
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="Body_md">
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="Body_sm">
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:textSize">12dp</item>
+    </style>
 </resources>

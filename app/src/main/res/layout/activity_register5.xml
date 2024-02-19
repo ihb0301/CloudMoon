@@ -144,5 +144,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chevron_left" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lang_level_recyclerview"
+        android:layout_width="409dp"
+        android:layout_height="251dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_register5_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView29" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

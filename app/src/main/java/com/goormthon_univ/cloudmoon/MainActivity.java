@@ -6,7 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class MainActivity extends AppCompatActivity {
+
+    static RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
         Button button_login=findViewById(R.id.button_login);
         Intent intent=new Intent(this,HomeActivity.class);
         startActivityForResult(intent,101);
+
+        if(requestQueue==null){
+            requestQueue= Volley.newRequestQueue(getApplicationContext());
+        }
+    }
+
+    public void makeRequest(){
+        //String
     }
 
 }

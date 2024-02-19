@@ -19,7 +19,7 @@ public class Home2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home2);
 
         Date now=new Date();
-        SimpleDateFormat simpledataformat=new SimpleDateFormat("MM월/dd일/E요일");
+        SimpleDateFormat simpledataformat=new SimpleDateFormat("MM월 dd일");
 
         TextView today_date=findViewById(R.id.home2_today);
         today_date.setText(simpledataformat.format(now));

@@ -28,37 +28,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextTextPassword"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
         android:layout_width="371dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="34dp"
-        android:drawableTint="#03A9F4"
         android:ems="10"
-        android:foregroundTint="#E91E63"
-        android:hint="이메일 주소를 입력해주세요."
-        android:inputType="text|textEmailAddress"
-        android:shadowColor="#FF5722"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
-        android:background="?attr/selectableItemBackground" />
+        app:layout_constraintTop_toTopOf="@id/textView10" >
 
-    <EditText
-        android:id="@+id/editTextTextPassword2"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
-        android:layout_width="371dp"
-        android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register2_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이메일 주소를 입력해주세요."
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="34dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="비밀번호를 입력해주세요."
         android:inputType="textPassword"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="@+id/textView11">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호를 입력해주세요."
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView6"
@@ -131,6 +139,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="516dp"
+        android:buttonTint="@color/p_500"
+        android:checked="true"
         android:text="자동 로그인"
         android:textColor="@color/n_700"
         app:layout_constraintStart_toStartOf="parent"
