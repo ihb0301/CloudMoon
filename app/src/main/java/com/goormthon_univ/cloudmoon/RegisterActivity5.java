@@ -72,7 +72,7 @@ public class RegisterActivity5 extends AppCompatActivity {
         //레벨 어뎁터 연결
         RecyclerView lang_level_recyclerview=findViewById(R.id.lang_level_recyclerview);
 
-        LangAdapter langadapter=new LangAdapter();
+        LangAdapter langadapter=new LangAdapter(0);
         langadapter.manager=this.manager;
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this,

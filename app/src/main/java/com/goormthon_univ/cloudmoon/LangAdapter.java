@@ -21,6 +21,10 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
 
+    LangAdapter(int selectedItemPosition){
+        this.selectedItemPosition=selectedItemPosition;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
