@@ -1,7 +1,5 @@
 package com.goormthon_univ.cloudmoon;
 
-import android.graphics.Color;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,9 +81,9 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
         public ViewHolder(View itemView){
             super(itemView);
 
-            level_image=itemView.findViewById(R.id.level_image);
-            level_text=itemView.findViewById(R.id.level_text);
-            level_text_des=itemView.findViewById(R.id.level_text_des);
+            level_image=itemView.findViewById(R.id.comment_image);
+            level_text=itemView.findViewById(R.id.comment_nickname);
+            level_text_des=itemView.findViewById(R.id.comment_content);
 
             recyclerview_lang_layout=itemView.findViewById(R.id.recyclerview_lang_layout);
             recyclerview_radius2=itemView.findViewById(R.id.recyclerview_radius2);
