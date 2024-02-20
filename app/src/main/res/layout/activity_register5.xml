@@ -18,19 +18,36 @@
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textView28">
+        app:layout_constraintTop_toTopOf="@id/textView28"
+        android:clickable="true"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/arrow_up" >
 
         <AutoCompleteTextView
             android:id="@+id/activity_register5_lang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
+            android:clickable="true"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:hint="학습할 언어를 선택해주세요."
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lang_b_dropdown_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rect_radius_fill"
+        android:elevation="1dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register5_lang_layout" /> <!--가장 최상단으로-->
 
     <TextView
         android:id="@+id/textView28"

@@ -28,7 +28,7 @@ public class MyActivity extends AppCompatActivity {
 
         my_nickname_text.setText(manager.pref_read_string("nickname")+" 님");
         my_lang_a_text.setText(manager.pref_read_string("lang_a"));
-        my_lang_a_text.setText(manager.pref_read_string("lang_b"));
+        my_lang_b_text.setText(manager.pref_read_string("lang_b"));
 
         ImageView my_lang_b_level=findViewById(R.id.my_lang_b_level);
 

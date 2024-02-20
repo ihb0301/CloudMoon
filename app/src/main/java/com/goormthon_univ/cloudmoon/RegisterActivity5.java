@@ -21,6 +21,9 @@ public class RegisterActivity5 extends AppCompatActivity {
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
 
+    //드롭다운 메뉴 표시 여부
+    Boolean isDropdownShow=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +31,46 @@ public class RegisterActivity5 extends AppCompatActivity {
 
         manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
+        Button activity_register5_next=findViewById(R.id.activity_register5_next);
+
+        TextInputLayout activity_register5_lang_layout=findViewById(R.id.activity_register5_lang_layout);
+        AutoCompleteTextView activity_register5_lang=findViewById(R.id.activity_register5_lang);
+
+        //리사이클러뷰 언어 선택 어뎁터 연결
+        RecyclerView lang_b_dropdown_recyclerview=findViewById(R.id.lang_b_dropdown_recyclerview);
+
+        LangDropdownAdapter lang_b_adapter=new LangDropdownAdapter(getApplicationContext(),activity_register5_next,activity_register5_lang,1);
+        lang_b_adapter.manager=this.manager;
+
+        LinearLayoutManager layoutManager2=new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL,false);
+        lang_b_dropdown_recyclerview.setLayoutManager(layoutManager2);
+        lang_b_dropdown_recyclerview.setAdapter(lang_b_adapter);
+
+        Lang lang_1=new Lang();
+        lang_1.lang="한국어";
+        lang_1.lang_des="한국어";
+
+        Lang lang_2=new Lang();
+        lang_2.lang="영어";
+        lang_2.lang_des="English";
+
+        Lang lang_3=new Lang();
+        lang_3.lang="중국어";
+        lang_3.lang_des="中文";
+
+        Lang lang_4=new Lang();
+        lang_4.lang="일본어";
+        lang_4.lang_des="日本語";
+
+        lang_b_adapter.addItem(lang_1);
+        lang_b_adapter.addItem(lang_2);
+        lang_b_adapter.addItem(lang_3);
+        lang_b_adapter.addItem(lang_4);
+        lang_b_adapter.notifyDataSetChanged();
+
+        //레벨 어뎁터 연결
         RecyclerView lang_level_recyclerview=findViewById(R.id.lang_level_recyclerview);
-
-
 
         LangAdapter langadapter=new LangAdapter();
         langadapter.manager=this.manager;
@@ -66,20 +106,18 @@ public class RegisterActivity5 extends AppCompatActivity {
         langadapter.addItem(l_4);
         langadapter.notifyDataSetChanged();
 
-        Button activity_register5_next=findViewById(R.id.activity_register5_next);
-
-        TextInputLayout activity_register5_lang_layout=findViewById(R.id.activity_register5_lang_layout);
-        AutoCompleteTextView activity_register5_lang=findViewById(R.id.activity_register5_lang);
-
-        String[] items={"한국어(한국어)","영어(English)","중국어()","일본어()"};
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(RegisterActivity5.this,R.layout.item_list,items);
-        activity_register5_lang.setAdapter(adapter);
-
         activity_register5_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity_register5_next.setEnabled(true);
-                activity_register5_next.setBackgroundColor(getResources().getColor(R.color.p_500));
+                if(isDropdownShow){
+                    lang_b_dropdown_recyclerview.setVisibility(View.GONE);
+                    isDropdownShow=!isDropdownShow;
+                    activity_register5_lang_layout.setEndIconDrawable(R.drawable.arrow_down);
+                }else{
+                    lang_b_dropdown_recyclerview.setVisibility(View.VISIBLE);
+                    isDropdownShow=!isDropdownShow;
+                    activity_register5_lang_layout.setEndIconDrawable(R.drawable.arrow_up);
+                }
             }
         });
 

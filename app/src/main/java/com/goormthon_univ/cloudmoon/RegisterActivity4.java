@@ -1,6 +1,8 @@
 package com.goormthon_univ.cloudmoon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +23,9 @@ public class RegisterActivity4 extends AppCompatActivity {
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
 
+    //드롭다운 메뉴 표시 여부
+    Boolean isDropdownShow=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,30 +38,51 @@ public class RegisterActivity4 extends AppCompatActivity {
         TextInputLayout activity_register4_lang_layout=findViewById(R.id.activity_register4_lang_layout);
         AutoCompleteTextView activity_register4_lang=findViewById(R.id.activity_register4_lang);
 
-        String[] items={"한국어(한국어)","영어(English)","중국어()","일본어()"};
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(RegisterActivity4.this,R.layout.item_list,items);
-        activity_register4_lang.setAdapter(adapter);
+        //리사이클러뷰 어뎁터 연결
+        RecyclerView lang_dropdown_recyclerview=findViewById(R.id.lang_dropdown_recyclerview);
 
-        activity_register4_lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"test",Toast.LENGTH_LONG);
-                TextView text=findViewById(R.id.textView25);
-                text.setText(position);
-                activity_register4_next.setBackgroundColor(getResources().getColor(R.color.p_500));
-            }
+        LangDropdownAdapter langadapter=new LangDropdownAdapter(getApplicationContext(),activity_register4_next,activity_register4_lang,0);
+        langadapter.manager=this.manager;
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL,false);
+        lang_dropdown_recyclerview.setLayoutManager(layoutManager);
+        lang_dropdown_recyclerview.setAdapter(langadapter);
 
-            }
-        });
+        Lang l_1=new Lang();
+        l_1.lang="한국어";
+        l_1.lang_des="한국어";
+
+        Lang l_2=new Lang();
+        l_2.lang="영어";
+        l_2.lang_des="English";
+
+        Lang l_3=new Lang();
+        l_3.lang="중국어";
+        l_3.lang_des="中文";
+
+        Lang l_4=new Lang();
+        l_4.lang="일본어";
+        l_4.lang_des="日本語";
+
+        langadapter.addItem(l_1);
+        langadapter.addItem(l_2);
+        langadapter.addItem(l_3);
+        langadapter.addItem(l_4);
+        langadapter.notifyDataSetChanged();
 
         activity_register4_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity_register4_next.setEnabled(true);
-                activity_register4_next.setBackgroundColor(getResources().getColor(R.color.p_500));
+                if(isDropdownShow){
+                    lang_dropdown_recyclerview.setVisibility(View.GONE);
+                    isDropdownShow=!isDropdownShow;
+                    activity_register4_lang_layout.setEndIconDrawable(R.drawable.arrow_down);
+                }else{
+                    lang_dropdown_recyclerview.setVisibility(View.VISIBLE);
+                    isDropdownShow=!isDropdownShow;
+                    activity_register4_lang_layout.setEndIconDrawable(R.drawable.arrow_up);
+                }
             }
         });
 
