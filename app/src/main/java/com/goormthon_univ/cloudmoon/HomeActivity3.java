@@ -7,17 +7,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.goormthon_univ.cloudmoon.CommentAdapter.Comment;
 import com.goormthon_univ.cloudmoon.CommentAdapter.CommentAdapter;
 
 public class HomeActivity3 extends AppCompatActivity {
+    LinearLayout home3_keyboard_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home3);
+
+        home3_keyboard_layout=findViewById(R.id.home3_keyboard_layout);
+
 
         TextView home3_title=findViewById(R.id.home3_title);
 
@@ -61,5 +66,13 @@ public class HomeActivity3 extends AppCompatActivity {
         Intent intent=new Intent();
         setResult(RESULT_OK,intent);
         finish();
+    }
+
+    public void comment_onclick_partner(View view){
+        home3_keyboard_layout.setVisibility(View.VISIBLE);
+    }
+
+    public void comment_onclick_me(View view){
+        home3_keyboard_layout.setVisibility(View.VISIBLE);
     }
 }

@@ -18,7 +18,8 @@
         <activity
             android:name=".HomeActivity3"
             android:exported="false"
-            android:theme="@style/Theme.CloudMoon.home" />
+            android:theme="@style/Theme.CloudMoon.home"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MyActivity2"
             android:exported="false"

@@ -41,229 +41,286 @@
             app:srcCompat="@drawable/chevron_left" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/home3_partner_layout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/home3_partner_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="46dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rect_radius"
+                    android:backgroundTint="@color/white">
+
+                    <ImageView
+                        android:id="@+id/home3_partner_comment_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:onClick="comment_onclick_partner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_partner_sep"
+                        app:srcCompat="@drawable/chat_circle" />
+
+                    <ImageView
+                        android:id="@+id/home3_partner_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/calendar_image_partner" />
+
+                    <TextView
+                        android:id="@+id/home3_partner_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:text="moon"
+                        android:textAppearance="@style/Body_sm"
+                        android:textColor="@color/n_700"
+                        app:layout_constraintStart_toStartOf="@+id/home3_partner_profile"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home3_partner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="40분 전"
+                        android:textAppearance="@style/Caption"
+                        android:textColor="@color/n_400"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home3_partner_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="상하이는 오늘 날씨가 않 좋았어ㅜㅜ\n그래서 밖에 안 나가고 기숙사 친구들이랑 내가 제일 좋아하는 한국 음식인 김치찌개를 시켜먹었어.\n그리고 다같이 Netflix로 偷偷藏不住 봤어.\n한국에서도 인기라고 들었는데 아직 안 봤다면 꼭 봐!"
+                        android:textAppearance="@style/Body_sm"
+                        android:textColor="@color/n_700"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/home3_partner_sep"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/n_200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_partner_content">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/home3_partner_comment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="17dp"
+                        android:onClick="comment_onclick_partner"
+                        android:text="댓글"
+                        android:textAppearance="@style/Caption"
+                        android:textColor="@color/n_400"
+                        app:layout_constraintStart_toStartOf="@+id/home3_partner_comment_image"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_partner_sep" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home3_partner_comment_recycler"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_partner_comment_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/home3_me_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="46dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rect_radius"
+                    android:backgroundTint="@color/white">
+
+                    <ImageView
+                        android:id="@+id/home3_me_comment_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:onClick="comment_onclick_me"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_me_sep"
+                        app:srcCompat="@drawable/chat_circle" />
+
+                    <ImageView
+                        android:id="@+id/home3_me_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/calendar_image_me" />
+
+                    <TextView
+                        android:id="@+id/home3_me_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:text="goorm"
+                        android:textAppearance="@style/Body_sm"
+                        android:textColor="@color/n_700"
+                        app:layout_constraintStart_toStartOf="@+id/home3_me_profile"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home3_me_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="2시간 전"
+                        android:textAppearance="@style/Caption"
+                        android:textColor="@color/n_400"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home3_me_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="早上我就去了网吧，因为今天我要选课。\n 这次也选课申请也失败了。\n 不过今天天气飞上晴朗，我的心情很快就变好了。"
+                        android:textAppearance="@style/Body_sm"
+                        android:textColor="@color/n_700"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/home3_me_sep"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/n_200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_me_content">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/home3_me_comment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="17dp"
+                        android:onClick="comment_onclick_me"
+                        android:text="댓글"
+                        android:textAppearance="@style/Caption"
+                        android:textColor="@color/n_400"
+                        app:layout_constraintStart_toStartOf="@+id/home3_me_comment_image"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_me_sep" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home3_me_comment_recycler"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home3_me_comment_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/home3_keyboard_layout"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/n_100"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="46dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rect_radius"
-                android:backgroundTint="@color/white">
+                android:text="moon님에게 댓글 쓰는 중"
+                android:textAppearance="@style/Caption"
+                android:textColor="@color/n_400" />
 
-                <ImageView
-                    android:id="@+id/home3_partner_comment_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_partner_sep"
-                    app:srcCompat="@drawable/chat_circle" />
-
-                <ImageView
-                    android:id="@+id/home3_partner_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/calendar_image_partner" />
-
-                <TextView
-                    android:id="@+id/home3_partner_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:text="moon"
-                    android:textAppearance="@style/Body_sm"
-                    android:textColor="@color/n_700"
-                    app:layout_constraintStart_toStartOf="@+id/home3_partner_profile"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home3_partner_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="40분 전"
-                    android:textAppearance="@style/Caption"
-                    android:textColor="@color/n_400"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home3_partner_content"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="상하이는 오늘 날씨가 않 좋았어ㅜㅜ\n그래서 밖에 안 나가고 기숙사 친구들이랑 내가 제일 좋아하는 한국 음식인 김치찌개를 시켜먹었어.\n그리고 다같이 Netflix로 偷偷藏不住 봤어.\n한국에서도 인기라고 들었는데 아직 안 봤다면 꼭 봐!"
-                    android:textAppearance="@style/Body_sm"
-                    android:textColor="@color/n_700"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/home3_partner_sep"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/n_200"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_partner_content">
-
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/home3_partner_comment_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="17dp"
-                    android:text="댓글"
-                    android:textAppearance="@style/Caption"
-                    android:textColor="@color/n_400"
-                    app:layout_constraintStart_toStartOf="@+id/home3_partner_comment_image"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_partner_sep" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/home3_partner_comment_recycler"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_partner_comment_text" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/home3_me_layout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="46dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rect_radius"
-                android:backgroundTint="@color/white">
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/home3_me_comment_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_me_sep"
-                    app:srcCompat="@drawable/chat_circle" />
-
-                <ImageView
-                    android:id="@+id/home3_me_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/calendar_image_me" />
-
-                <TextView
-                    android:id="@+id/home3_me_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:text="goorm"
+                <EditText
+                    android:id="@+id/editTextText"
+                    android:layout_width="350dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/rect_radius_fill"
+                    android:backgroundTint="@color/n_200"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="댓글을 입력하세요."
                     android:textAppearance="@style/Body_sm"
-                    android:textColor="@color/n_700"
-                    app:layout_constraintStart_toStartOf="@+id/home3_me_profile"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home3_me_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="2시간 전"
-                    android:textAppearance="@style/Caption"
-                    android:textColor="@color/n_400"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home3_me_content"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="早上我就去了网吧，因为今天我要选课。\n 这次也选课申请也失败了。\n 不过今天天气飞上晴朗，我的心情很快就变好了。"
-                    android:textAppearance="@style/Body_sm"
-                    android:textColor="@color/n_700"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@color/n_500" />
 
                 <ImageView
-                    android:id="@+id/home3_me_sep"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/n_200"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_me_content">
-
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/home3_me_comment_text"
+                    android:id="@+id/imageView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="17dp"
-                    android:text="댓글"
-                    android:textAppearance="@style/Caption"
-                    android:textColor="@color/n_400"
-                    app:layout_constraintStart_toStartOf="@+id/home3_me_comment_image"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_me_sep" />
+                    android:tint="@color/n_400"
+                    app:srcCompat="@drawable/paper_plane" />
+            </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/home3_me_comment_recycler"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home3_me_comment_text" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </ScrollView>
+
+    </RelativeLayout>
 
 </LinearLayout>
