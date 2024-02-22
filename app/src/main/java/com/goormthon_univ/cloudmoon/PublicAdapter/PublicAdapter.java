@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.goormthon_univ.cloudmoon.CommentAdapter.Comment;
 import com.goormthon_univ.cloudmoon.R;
 
 import java.util.ArrayList;
@@ -94,9 +93,9 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicAdapter.ViewHolder
                 public void onClick(View v) {
                     dialog_friend.show();
 
-                    Button dialog_friend_request=dialog_friend.findViewById(R.id.dialog_friend_request);
-                    Button dialog_friend_cancel=dialog_friend.findViewById(R.id.dialog_friend_cancel);
-                    ImageView dialog_friend_close=dialog_friend.findViewById(R.id.dialog_friend_close);
+                    Button dialog_friend_request=dialog_friend.findViewById(R.id.dialog_unfriend_request);
+                    Button dialog_friend_cancel=dialog_friend.findViewById(R.id.dialog_unfriend_cancel);
+                    ImageView dialog_friend_close=dialog_friend.findViewById(R.id.dialog_unfriend_close);
 
                     dialog_friend_close.setOnClickListener(new View.OnClickListener() {
                         @Override

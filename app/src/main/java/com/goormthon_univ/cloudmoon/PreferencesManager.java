@@ -7,6 +7,16 @@ import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PreferencesManager extends AppCompatActivity {
+    /*
+    email
+    pw
+    nickname
+    lang_a
+    lang_b
+    lang_b_level
+    friend
+     */
+
     //SharedPreferences 설정
     SharedPreferences pref;
     SharedPreferences.Editor editor;

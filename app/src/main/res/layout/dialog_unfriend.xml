@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
-        android:text="일기 교환을 신청하시겠어요?"
+        android:text="일기 교환을 중단하시겠어요?"
         android:textAppearance="@style/Body_md"
         android:textColor="@color/n_700"
         android:textStyle="bold"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="상대방이 수락하면 교환일기가 시작돼요!"
+        android:text="중단한 일기는 다시 복구할 수 없습니다."
         android:textAppearance="@style/Body_md"
         android:textColor="@color/n_700"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,13 +73,13 @@
         android:layout_marginTop="148dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/p_200"
-        android:text="신청하기"
+        android:text="중단하기"
         android:textColor="@color/p_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
     <ImageView
-        android:id="@+id/imageView31"
+        android:id="@+id/imageView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -93,9 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:tintMode="multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView29"
-        app:srcCompat="@drawable/send_mail_1" />
+        app:srcCompat="@drawable/dialog_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

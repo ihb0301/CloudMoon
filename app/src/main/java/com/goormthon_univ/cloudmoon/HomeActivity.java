@@ -2,13 +2,23 @@ package com.goormthon_univ.cloudmoon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.goormthon_univ.cloudmoon.calendar_decorator.AllDecorator;
 import com.goormthon_univ.cloudmoon.calendar_decorator.SelectDecorator;
@@ -27,11 +37,78 @@ import java.util.Calendar;
 public class HomeActivity extends AppCompatActivity {
     private ArrayList<CalendarDay> calendarDayList = new ArrayList<>();
     private MaterialCalendarView home_calendarView;
+    PreferencesManager manager;
+    Dialog dialog_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //Preferences 관리
+        manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
+
+        //홈화면 대시 보드 글자 선택
+        //unfriend 대시 보드
+        TextView home_layout_unfriend_caption=findViewById(R.id.home_layout_unfriend_caption);
+        home_layout_unfriend_caption.setText(manager.pref_read_string("nickname")+"님 안녕하세요 :)");
+
+        //friend 대시 보드
+        TextView home_friend_me_nickname=findViewById(R.id.home_friend_me_nickname);
+        home_friend_me_nickname.setText(manager.pref_read_string("nickname")+" 님");
+        TextView home_friend_partner_nickname=findViewById(R.id.home_friend_partner_nickname);
+        TextView home_friend_me_lang_a=findViewById(R.id.home_friend_me_lang_a);
+        ImageView home_friend_me_lang_a_image=findViewById(R.id.home_friend_me_lang_a_image);
+        TextView home_friend_me_lang_b=findViewById(R.id.home_friend_me_lang_b);
+        ImageView home_friend_me_lang_b_image=findViewById(R.id.home_friend_me_lang_b_image);
+
+        //한국어 언어 표기명을 영문 표기명으로 교체하기 위한 작업
+        String lang_arr[]={"한국어","영어","중국어","일본어"};
+        String lang_arr_replace[]={"KR","EN","CN","JP"};
+        String lang_a_rp="",lang_b_rp="";
+        for(int i=0;i<4;i++){
+            if(manager.pref_read_string("lang_a").equals(lang_arr[i]))
+                lang_a_rp=lang_arr_replace[i];
+            if(manager.pref_read_string("lang_b").equals(lang_arr[i]))
+                lang_b_rp=lang_arr_replace[i];
+        }
+        home_friend_me_lang_a.setText(lang_a_rp);
+        home_friend_me_lang_b.setText(lang_b_rp);
+
+        switch(manager.pref_read_string("lang_b_level")){
+            case "1":
+                home_friend_me_lang_b_image.setImageResource(R.drawable.lang_level_1);
+                break;
+            case "2":
+                home_friend_me_lang_b_image.setImageResource(R.drawable.lang_level_2);
+                break;
+            case "3":
+                home_friend_me_lang_b_image.setImageResource(R.drawable.lang_level_3);
+                break;
+            case "4":
+                home_friend_me_lang_b_image.setImageResource(R.drawable.lang_level_4);
+                break;
+        }
+
+        //교환 상대 존재 여부에 따라 홈화면 대시보드 선택
+        ConstraintLayout home_layout_friend=findViewById(R.id.home_layout_friend);
+        ConstraintLayout home_layout_unfriend=findViewById(R.id.home_layout_unfriend);
+
+        if(manager.pref_read_string("friend")!=null){
+            if(manager.pref_read_string("friend").equals("")){
+                //교환 일기 상대가 없는 경우
+                home_layout_friend.setVisibility(View.GONE);
+                home_layout_unfriend.setVisibility(View.VISIBLE);
+            }else{
+                //교환 일기 상대가 있는 경우
+                home_layout_friend.setVisibility(View.VISIBLE);
+                home_layout_unfriend.setVisibility(View.GONE);
+            }
+        }{
+            //교환 일기 상대가 없는 경우
+            home_layout_friend.setVisibility(View.GONE);
+            home_layout_unfriend.setVisibility(View.VISIBLE);
+        }
 
         //상단바 색상 변경
         if (Build.VERSION.SDK_INT >= 21) {
@@ -102,5 +179,56 @@ public class HomeActivity extends AppCompatActivity {
     public void publicctivity(View view){
         Intent intent_publicactivity=new Intent(getApplicationContext(), PublicActivity.class);
         startActivityForResult(intent_publicactivity,101);
+    }
+
+    public void dialog_home_onclick(View view){
+        //home 다이얼로그 생성
+        Dialog dialog_home=new Dialog(HomeActivity.this);
+        dialog_home.setContentView(R.layout.dialog_home);
+        dialog_home.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_home.getWindow().setGravity(Gravity.BOTTOM);
+        dialog_home.show();
+
+        dialog_home.findViewById(R.id.dialog_home_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_home.dismiss();
+            }
+        });
+        dialog_home.findViewById(R.id.dialog_home_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_home.dismiss();
+                dialog_unfriend_function();
+            }
+        });
+    }
+
+    public void dialog_unfriend_function(){
+        //unfriend 다이얼로그 생성
+        Dialog dialog_unfriend=new Dialog(HomeActivity.this);
+        dialog_unfriend.setContentView(R.layout.dialog_unfriend);
+        dialog_unfriend.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_unfriend.show();
+
+        dialog_unfriend.findViewById(R.id.dialog_unfriend_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_unfriend.dismiss();
+            }
+        });
+        dialog_unfriend.findViewById(R.id.dialog_unfriend_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //취소하기를 눌렀을 때의 동작
+                dialog_unfriend.dismiss();
+            }
+        });
+        dialog_unfriend.findViewById(R.id.dialog_unfriend_request).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //중단하기를 눌렀을 때의 동작
+            }
+        });
     }
 }
