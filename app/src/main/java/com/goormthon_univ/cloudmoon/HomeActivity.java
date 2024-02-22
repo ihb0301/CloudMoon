@@ -2,7 +2,6 @@ package com.goormthon_univ.cloudmoon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
@@ -16,9 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.goormthon_univ.cloudmoon.calendar_decorator.AllDecorator;
 import com.goormthon_univ.cloudmoon.calendar_decorator.SelectDecorator;
@@ -29,7 +26,6 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 
 import org.threeten.bp.DayOfWeek;
-import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -211,20 +207,20 @@ public class HomeActivity extends AppCompatActivity {
         dialog_unfriend.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog_unfriend.show();
 
-        dialog_unfriend.findViewById(R.id.dialog_unfriend_close).setOnClickListener(new View.OnClickListener() {
+        dialog_unfriend.findViewById(R.id.dialog_accpet_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog_unfriend.dismiss();
             }
         });
-        dialog_unfriend.findViewById(R.id.dialog_unfriend_cancel).setOnClickListener(new View.OnClickListener() {
+        dialog_unfriend.findViewById(R.id.dialog_accept_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //취소하기를 눌렀을 때의 동작
                 dialog_unfriend.dismiss();
             }
         });
-        dialog_unfriend.findViewById(R.id.dialog_unfriend_request).setOnClickListener(new View.OnClickListener() {
+        dialog_unfriend.findViewById(R.id.dialog_accept_request).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //중단하기를 눌렀을 때의 동작

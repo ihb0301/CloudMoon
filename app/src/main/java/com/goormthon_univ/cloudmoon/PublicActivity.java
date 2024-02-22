@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.goormthon_univ.cloudmoon.CommentAdapter.Comment;
-import com.goormthon_univ.cloudmoon.CommentAdapter.CommentAdapter;
 import com.goormthon_univ.cloudmoon.PublicAdapter.Public;
 import com.goormthon_univ.cloudmoon.PublicAdapter.PublicAdapter;
 import com.goormthon_univ.cloudmoon.Server.ServerManager;
@@ -61,7 +59,7 @@ public class PublicActivity extends AppCompatActivity {
 
 
         //글 어뎁터 연결
-        RecyclerView public_recycler=findViewById(R.id.public_recycler);
+        RecyclerView public_recycler=findViewById(R.id.notification_recycler);
 
         PublicAdapter publicadapter=new PublicAdapter(PublicActivity.this);
 

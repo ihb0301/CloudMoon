@@ -93,9 +93,9 @@ public class PublicAdapter extends RecyclerView.Adapter<PublicAdapter.ViewHolder
                 public void onClick(View v) {
                     dialog_friend.show();
 
-                    Button dialog_friend_request=dialog_friend.findViewById(R.id.dialog_unfriend_request);
-                    Button dialog_friend_cancel=dialog_friend.findViewById(R.id.dialog_unfriend_cancel);
-                    ImageView dialog_friend_close=dialog_friend.findViewById(R.id.dialog_unfriend_close);
+                    Button dialog_friend_request=dialog_friend.findViewById(R.id.dialog_accept_request);
+                    Button dialog_friend_cancel=dialog_friend.findViewById(R.id.dialog_accept_cancel);
+                    ImageView dialog_friend_close=dialog_friend.findViewById(R.id.dialog_accpet_close);
 
                     dialog_friend_close.setOnClickListener(new View.OnClickListener() {
                         @Override

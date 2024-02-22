@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recyclerview_public_layout"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rect_radius_fill"
+    android:backgroundTint="@color/n_000">
+
+    <LinearLayout
+        android:id="@+id/recyclerview_notification_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/public_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="14dp"
+            android:text="Moon 님이 새 일기를 작성했어요!"
+            android:textColor="@color/n_700"
+            android:theme="@style/Body_md" />
+
+        <TextView
+            android:id="@+id/public_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:text="1시간 전"
+            android:textColor="@color/n_400"
+            android:theme="@style/Caption" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

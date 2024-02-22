@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="@+id/spinner" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/public_recycler"
+        android:id="@+id/notification_recycler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"

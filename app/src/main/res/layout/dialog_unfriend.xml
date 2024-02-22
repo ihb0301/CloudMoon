@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/dialog_unfriend_close"
+        android:id="@+id/dialog_accpet_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
     <Button
-        android:id="@+id/dialog_unfriend_cancel"
+        android:id="@+id/dialog_accept_cancel"
         android:layout_width="136dp"
         android:layout_height="46dp"
         android:layout_marginStart="20dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView29" />
 
     <Button
-        android:id="@+id/dialog_unfriend_request"
+        android:id="@+id/dialog_accept_request"
         android:layout_width="136dp"
         android:layout_height="46dp"
         android:layout_marginTop="148dp"
