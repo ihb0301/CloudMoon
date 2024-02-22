@@ -3,10 +3,12 @@ package com.goormthon_univ.cloudmoon;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.goormthon_univ.cloudmoon.calendar_decorator.AllDecorator;
 import com.goormthon_univ.cloudmoon.calendar_decorator.SelectDecorator;
@@ -72,6 +74,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivityForResult(intent_home3activity,101);
             }
         });
+
+        Button home_find_friend=findViewById(R.id.home_find_friend);
+        home_find_friend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publicctivity(v);
+            }
+        });
     }
 
     public void myactivity(View view){
@@ -87,5 +97,10 @@ public class HomeActivity extends AppCompatActivity {
     public void alarmactivity(View view){
         Intent intent_alarmactivity=new Intent(getApplicationContext(), AlarmActivity.class);
         startActivityForResult(intent_alarmactivity,101);
+    }
+
+    public void publicctivity(View view){
+        Intent intent_publicactivity=new Intent(getApplicationContext(), PublicActivity.class);
+        startActivityForResult(intent_publicactivity,101);
     }
 }

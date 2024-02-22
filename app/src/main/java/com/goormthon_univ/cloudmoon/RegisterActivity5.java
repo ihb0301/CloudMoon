@@ -16,10 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.goormthon_univ.cloudmoon.Server.ServerManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity5 extends AppCompatActivity {
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
+
+    //서버 관리를 위한 객체
+    ServerManager server_manager;
 
     //드롭다운 메뉴 표시 여부
     Boolean isDropdownShow=false;
@@ -28,6 +35,8 @@ public class RegisterActivity5 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register5);
+
+        server_manager=new ServerManager(getApplicationContext());
 
         manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
@@ -128,6 +137,16 @@ public class RegisterActivity5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manager.pref_write_boolean("login",true);
+                Map<String,String> parms=new HashMap<String,String>();
+                /*parms.put("email",manager.pref_read_string("email"));
+                parms.put("nickname",manager.pref_read_string("nickname"));
+                parms.put("password",manager.pref_read_string("pw"));
+                parms.put("myLanguage",manager.pref_read_string("lang_a"));
+                parms.put("learningLanguage",manager.pref_read_string("lang_b"));
+                parms.put("level",manager.pref_read_string("lang_b_level"));
+                parms.put("flagOpen","true");
+                parms.put("flagAutoLogin","true");*/
+                server_manager.string_request_post("https://virtserver.swaggerhub.com/eoslovy/cloudmoon/1.0.0/accounts/register",parms);
                 startActivityForResult(intent,101);
                 finish();
             }

@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.goormthon_univ.cloudmoon.Lang;
-import com.goormthon_univ.cloudmoon.PreferencesManager;
 import com.goormthon_univ.cloudmoon.R;
 
 import java.util.ArrayList;
@@ -70,11 +68,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         public ViewHolder(View itemView){
             super(itemView);
 
-            comment_image=itemView.findViewById(R.id.comment_image);
-            comment_nickname=itemView.findViewById(R.id.comment_nickname);
-            comment_content=itemView.findViewById(R.id.comment_content);
+            comment_image=itemView.findViewById(R.id.public_image);
+            comment_nickname=itemView.findViewById(R.id.public_nickname);
+            comment_content=itemView.findViewById(R.id.public_content);
 
-            recyclerview_lang_layout=itemView.findViewById(R.id.recyclerview_lang_layout);
+            recyclerview_lang_layout=itemView.findViewById(R.id.recyclerview_public_layout);
             recyclerview_radius2=itemView.findViewById(R.id.recyclerview_radius2);
         }
 

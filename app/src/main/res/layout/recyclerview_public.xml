@@ -6,12 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/rect_radius_fill">
 
     <ImageView
         android:id="@+id/public_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cloud_icon" />
@@ -20,8 +23,9 @@
         android:id="@+id/public_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="입문자"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="galaxy"
         android:textColor="@color/n_700"
         android:theme="@style/Caption"
         app:layout_constraintStart_toStartOf="@+id/public_image"
@@ -31,21 +35,39 @@
         android:id="@+id/public_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="4시간 전"
         android:textColor="@color/n_400"
         android:theme="@style/Caption"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/public_send"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/public_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
-        android:text="가벼운 인사를 나눌 수 있어요."
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="오늘은 기분이 좋지 않은 날이었다. 아침 일찍 일어났지만 피곤함이 가시지 않아 힘들었다. 하루 내내 뭔가 잘못된 기분이 들었고, 마음이 무거워졌다."
         android:textColor="@color/n_700"
         android:theme="@style/Body_sm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/public_nickname" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/public_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:tint="@color/p_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/paper_plane"
+        android:background="?attr/selectableItemBackground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

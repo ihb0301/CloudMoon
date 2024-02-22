@@ -81,11 +81,11 @@ public class LangAdapter extends RecyclerView.Adapter<LangAdapter.ViewHolder>{
         public ViewHolder(View itemView){
             super(itemView);
 
-            level_image=itemView.findViewById(R.id.comment_image);
-            level_text=itemView.findViewById(R.id.comment_nickname);
-            level_text_des=itemView.findViewById(R.id.comment_content);
+            level_image=itemView.findViewById(R.id.public_image);
+            level_text=itemView.findViewById(R.id.public_nickname);
+            level_text_des=itemView.findViewById(R.id.public_content);
 
-            recyclerview_lang_layout=itemView.findViewById(R.id.recyclerview_lang_layout);
+            recyclerview_lang_layout=itemView.findViewById(R.id.recyclerview_public_layout);
             recyclerview_radius2=itemView.findViewById(R.id.recyclerview_radius2);
         }
 
