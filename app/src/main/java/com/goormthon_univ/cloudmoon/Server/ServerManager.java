@@ -3,20 +3,20 @@ package com.goormthon_univ.cloudmoon.Server;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ResponseDelivery;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.goormthon_univ.cloudmoon.Lang;
+import com.goormthon_univ.cloudmoon.Http.HttpRequestGetJson;
+import com.goormthon_univ.cloudmoon.Http.HttpRequestPostJson;
+import com.goormthon_univ.cloudmoon.Http.HttpRequestPutJson;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,8 @@ import java.util.Map;
 public class ServerManager {
     //Volley 라이브러리
     static RequestQueue request_queue;
-    static String url_main="http://172.30.1.77:8080";
+    static String url_main="http://ec2-13-125-254-39.ap-northeast-2.compute.amazonaws.com:8080";
+    Context context;
     /*
     http://172.30.1.77:8080
     https://eea0-183-98-102-76.ngrok-free.app
@@ -35,6 +36,7 @@ public class ServerManager {
         if(this.request_queue==null){
             request_queue= Volley.newRequestQueue(context);
         }
+        this.context=context;
     }
 
     public void string_request_get(String url){
@@ -73,14 +75,18 @@ public class ServerManager {
     public void string_request_post(String url,Map<String,String> parms_copy){
         //final String[] return_str = {""};
 
-        StringRequest request=new StringRequest(
-                Request.Method.POST,
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("email", "AbCdEfGh123456");
+        params.put("password", "AbCdEfGh123456");
+
+        JsonObjectRequest request=new JsonObjectRequest(
                 url_main+url,
-                new Response.Listener<String>() {
+                new JSONObject(params),
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         //응답을 받았을 때 동작
-                        Log.e("ServerManager",response);
+                        Log.e("ServerManager","응답");
                     }
                 },
                 new Response.ErrorListener() {
@@ -92,27 +98,68 @@ public class ServerManager {
                     }
                 }
         ){
+            /*
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parms=new HashMap<String,String>();
-                parms=parms_copy;
+                //parms=parms_copy;
+                parms.put("email","email");
+                parms.put("password","pass");
                 return parms;
             }
+            */
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> header=new HashMap<String,String>();
+                header.put("accept", "application/json");
                 header.put("Content-Type", "application/json");
-                //header.put("ngrok-skip-browser-warning", "69420");
-                //header.put("ngrok-skip-browser-warning request header", "true");
-                //header.put("User-Agent","Mozilla/5.0");
                 return header;
             }
         };
         //request.setShouldCache(false);
         //request.setRetryPolicy(new DefaultRetryPolicy(60000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         request_queue.add(request);
+    }
+
+    public String http_request_post_json(String page,JSONObject parms){
+        Thread th = new HttpRequestPostJson(page,parms);
+        th.start();
+
+        try{
+            th.join();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        String d= ((HttpRequestPostJson) th).getResponse();
+        return d;
+    }
+
+    public String http_request_get_json(String page){
+        Thread th = new HttpRequestGetJson(page);
+        th.start();
+
+        try{
+            th.join();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        String d= ((HttpRequestGetJson) th).getResponse();
+        return d;
+    }
+
+    public String http_request_put_json(String page,JSONObject parms){
+        Thread th = new HttpRequestPutJson(page,parms);
+        th.start();
+
+        try{
+            th.join();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        String d= ((HttpRequestPutJson) th).getResponse();
+        return d;
     }
 
     public void response_json(String response){

@@ -8,17 +8,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.goormthon_univ.cloudmoon.Server.ServerManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class RegisterActivity2 extends AppCompatActivity {
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
 
+    //서버 관리를 위한 객체
+    ServerManager server_manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
+
+        server_manager=new ServerManager(getApplicationContext());
 
         manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
@@ -28,11 +38,17 @@ public class RegisterActivity2 extends AppCompatActivity {
         Button activity_register2_check_button=findViewById(R.id.activity_register2_check_button);
         Button activity_register_next=findViewById(R.id.activity_register2_next);
 
-        TextInputEditText activity_register2_nickname=findViewById(R.id.activity_register2_nickname);
+        TextInputEditText activity_register2_nickname=findViewById(R.id.activity_login_email);
         activity_register2_check_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activity_register2_nickname.getText().length()>2){
+                String msg=server_manager.http_request_get_json("http://13.125.254.39:8080/accounts/check-nickname/"+activity_register2_nickname.getText());
+                if(msg.equals("중복된 닉네임입니다.")){
+                    Toast.makeText(getApplicationContext(),"중복된 닉네임입니다.",Toast.LENGTH_SHORT).show();
+                    text_enable_nickname.setVisibility(View.INVISIBLE);
+                    activity_register_next.setEnabled(false);
+                    activity_register_next.setBackgroundColor(getResources().getColor(R.color.n_300));
+                }else{
                     text_enable_nickname.setVisibility(View.VISIBLE);
                     activity_register_next.setEnabled(true);
                     activity_register_next.setBackgroundColor(getResources().getColor(R.color.p_500));

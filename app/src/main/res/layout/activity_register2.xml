@@ -117,7 +117,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_register2_nickname"
+            android:id="@+id/activity_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="닉네임을 입력해주세요."

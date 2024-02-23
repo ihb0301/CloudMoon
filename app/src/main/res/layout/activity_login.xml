@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="@id/textView10" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_register2_nickname"
+            android:id="@+id/activity_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이메일 주소를 입력해주세요."
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView11">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_register_pw"
+            android:id="@+id/activity_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호를 입력해주세요."

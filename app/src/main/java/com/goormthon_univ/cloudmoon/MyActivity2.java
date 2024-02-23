@@ -14,10 +14,17 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.goormthon_univ.cloudmoon.Server.ServerManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MyActivity2 extends AppCompatActivity {
     //Preferences 관리를 위한 객체
     PreferencesManager manager;
+
+    //서버 관리를 위한 객체
+    ServerManager server_manager;
 
     //드롭다운 메뉴 표시 여부
     Boolean isDropdownShow_langa=false;
@@ -27,6 +34,8 @@ public class MyActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my2);
+
+        server_manager=new ServerManager(getApplicationContext());
 
         manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
@@ -184,6 +193,22 @@ public class MyActivity2 extends AppCompatActivity {
     }
 
     public void myactivity(View view){
+        //변경한 정보 서버로 올리기
+        JSONObject login_json = new JSONObject();
+        try {
+            login_json.put("email",manager.pref_read_string("email"));
+            login_json.put("nickname",manager.pref_read_string("nickname"));
+            login_json.put("password",manager.pref_read_string("pw"));
+            login_json.put("myLanguage",manager.pref_read_string("lang_a"));
+            login_json.put("learningLanguage",manager.pref_read_string("lang_b"));
+            login_json.put("level",manager.pref_read_string("lang_b_level"));
+            login_json.put("flagOpen","true");
+            login_json.put("flagAutoLogin","true");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        String msg=server_manager.http_request_put_json("http://13.125.254.39:8080/accounts/"+manager.pref_read_string("accountsId"),login_json);
+
         Intent intent=new Intent();
         setResult(RESULT_OK,intent);
         finish();

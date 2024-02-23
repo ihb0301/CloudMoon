@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -42,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         manager=new PreferencesManager(getSharedPreferences("preferences", Activity.MODE_PRIVATE));
 
         input_email=findViewById(R.id.activity_register_email);
-        input_pw=findViewById(R.id.activity_register_pw);
+        input_pw=findViewById(R.id.activity_login_password);
         input_pw2=findViewById(R.id.activity_register_pw2);
 
         activity_register_next=findViewById(R.id.activity_register_next);

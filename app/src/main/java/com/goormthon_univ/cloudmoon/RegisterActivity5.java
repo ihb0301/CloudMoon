@@ -18,6 +18,9 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.goormthon_univ.cloudmoon.Server.ServerManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,16 +140,35 @@ public class RegisterActivity5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manager.pref_write_boolean("login",true);
-                Map<String,String> parms=new HashMap<String,String>();
-                /*parms.put("email",manager.pref_read_string("email"));
-                parms.put("nickname",manager.pref_read_string("nickname"));
-                parms.put("password",manager.pref_read_string("pw"));
-                parms.put("myLanguage",manager.pref_read_string("lang_a"));
-                parms.put("learningLanguage",manager.pref_read_string("lang_b"));
-                parms.put("level",manager.pref_read_string("lang_b_level"));
-                parms.put("flagOpen","true");
-                parms.put("flagAutoLogin","true");*/
-                server_manager.string_request_post("https://virtserver.swaggerhub.com/eoslovy/cloudmoon/1.0.0/accounts/register",parms);
+                JSONObject login_json = new JSONObject();
+                try {
+                    login_json.put("email",manager.pref_read_string("email"));
+                    login_json.put("nickname",manager.pref_read_string("nickname"));
+                    login_json.put("password",manager.pref_read_string("pw"));
+                    login_json.put("myLanguage",manager.pref_read_string("lang_a"));
+                    login_json.put("learningLanguage",manager.pref_read_string("lang_b"));
+                    login_json.put("level",manager.pref_read_string("lang_b_level"));
+                    login_json.put("flagOpen","true");
+                    login_json.put("flagAutoLogin","true");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                String msg=server_manager.http_request_post_json("http://13.125.254.39:8080/accounts/register",login_json);
+
+                //토큰과 accountsId 불러오는 작업
+                try {
+                    JSONObject login_json_2 = new JSONObject();
+                    login_json_2.put("email", manager.pref_read_string("email"));
+                    login_json_2.put("password", manager.pref_read_string("pw"));
+
+                    String msg2 = server_manager.http_request_post_json("http://13.125.254.39:8080/accounts/login", login_json);
+                    JSONObject return_json = new JSONObject(msg);
+
+                    manager.pref_write_string("token", return_json.get("token").toString());
+                    manager.pref_write_string("accountsId", return_json.get("accountsId").toString());
+                }catch(Exception e){
+
+                }
                 startActivityForResult(intent,101);
                 finish();
             }

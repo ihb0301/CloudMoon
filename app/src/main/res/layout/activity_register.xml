@@ -104,7 +104,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView14">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_register_pw"
+            android:id="@+id/activity_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호를 입력해주세요."
